@@ -1,0 +1,34 @@
+﻿@model IEnumerable<DotNetCoreIdentity.Application.BlogServices.Dtos.PostDto>
+<div class="row mt-5">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-sm-12">
+            <div class="card my-2">
+                <img src="@item.ImageUrl" class="card-img-top" />
+                <div class="card-body">
+
+
+                    <h5 class="card-title">@item.Title</h5>
+
+                    @if (item.PlainContent.Length > 90)
+                    {
+                        <p class="card-text">
+                            @Html.Raw(item.PlainContent.Substring(0, 90))
+
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="card-text">
+                            @Html.Raw(item.PlainContent)
+                        </p>
+                    }
+                    <a asp-action="Index" asp-controller="Blog" asp-route-categoryUrl="@item.Category.UrlName" asp-route-postUrl="@item.UrlName" class="card-link">Devamini oku</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
